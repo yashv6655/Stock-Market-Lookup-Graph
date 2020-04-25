@@ -100,7 +100,10 @@ class Stock extends React.Component {
               value={this.state.stockSymbolDisplay.toUpperCase()}
             />
             {/* Search Button */}
-            <button class="btn btn-warning mx-2 p-1" onClick={this.handleClick}>
+            <button
+              className="btn btn-warning mx-2 p-1"
+              onClick={this.handleClick}
+            >
               Search
             </button>
             {/* End of Search Button */}
@@ -109,10 +112,16 @@ class Stock extends React.Component {
 
           {/* View Stock History Buttons */}
           <div className="mt-3">
-            <button class="btn btn-light mr-2" onClick={this.handleFullDisplay}>
+            <button
+              className="btn btn-light mr-2"
+              onClick={this.handleFullDisplay}
+            >
               View Full History
             </button>
-            <button class="btn btn-light" onClick={this.handleCompactDisplay}>
+            <button
+              className="btn btn-light"
+              onClick={this.handleCompactDisplay}
+            >
               Past 100 Days
             </button>
           </div>
