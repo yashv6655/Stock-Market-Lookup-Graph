@@ -26,12 +26,12 @@ class Stock extends React.Component {
     const API_KEY = process.env.REACT_API_KEY;
 
     // this.state.stockSymbolDisplay = stockSymbol;
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=${stockDisplaytype}&apikey=${API_KEY}`;
+    let API_Call_ALPHA = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=${stockDisplaytype}&apikey=${API_KEY}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
-    this.setState({ stockSymbolDisplay: stockSymbol });
+    //this.setState({ stockSymbolDisplay: stockSymbol });
 
-    fetch(API_Call)
+    fetch(API_Call_ALPHA)
       .then(function (response) {
         return response.json();
       })
@@ -89,7 +89,7 @@ class Stock extends React.Component {
           {/* Stock Search Start */}
           <div className="mt-5 bg-light">
             <input
-              class="mt-5"
+              className="mt-5"
               name="userSymbol"
               placeholder="GOOGL"
               onChange={(event) =>
@@ -119,31 +119,33 @@ class Stock extends React.Component {
           {/* End View Stock History Buttons */}
           {/* Start of Graph */}
           <div
-            className="align-items-center plot"
+            className="row"
             style={{ marginRight: "3rem", display: "block" }}
           >
-            <Plot
-              className="ml-3 bg-light"
-              style={{ marginTop: "5rem", marginRight: "0" }}
-              data={[
-                {
-                  x: this.state.stockChartXValues,
-                  y: this.state.stockChartYValues,
-                  type: "scatter",
-                  mode: "lines+markers",
-                  marker: { color: "#21ce99" },
-                },
-              ]}
-              layout={{
-                width: 1200,
-                height: 600,
-                title: `${this.state.title}'s Stock`,
-                titlefont: { size: 25 },
-                paper_bgcolor: "#f8f9fa",
-                plot_bgcolor: "#f8f9fa",
-              }}
-            />
-            {/* End of Graph */}
+            <div className="w-50 mx-auto">
+              <Plot
+                className="ml-3 bg-light text-center"
+                style={{ marginTop: "5rem", marginLeft: "7rem" }}
+                data={[
+                  {
+                    x: this.state.stockChartXValues,
+                    y: this.state.stockChartYValues,
+                    type: "scatter",
+                    mode: "lines+markers",
+                    marker: { color: "#21ce99" },
+                  },
+                ]}
+                layout={{
+                  width: 750,
+                  height: 500,
+                  title: `${this.state.title}'s Stock`,
+                  titlefont: { size: 25 },
+                  paper_bgcolor: "#f8f9fa",
+                  plot_bgcolor: "#f8f9fa",
+                }}
+              />
+              {/* End of Graph */}
+            </div>
           </div>
         </div>
         {/* End of Below the Scroll Animation */}
