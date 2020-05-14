@@ -36,7 +36,7 @@ class Stock extends React.Component {
     // this.state.stockSymbolDisplay = stockSymbol;
     let API_Call_ALPHA = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=${stockDisplaytype}&apikey=${API_KEY}`;
     let API_Call_SMA = `https://www.alphavantage.co/query?function=SMA&symbol=${stockSymbol}&interval=daily&time_period=2&series_type=open&apikey=${API_KEY}`;
-    //let API_CALL_NEWS = `http://newsapi.org/v2/everything?q=${stockSymbol}&from=2020-05-13&to=2020-05-13&sortBy=popularity&apiKey=ff8c8269aead49568adb2058ad21ec07`;
+    let API_CALL_NEWS = `http://newsapi.org/v2/everything?q=${stockSymbol}&from=2020-05-13&to=2020-05-13&sortBy=popularity&apiKey=ff8c8269aead49568adb2058ad21ec07`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
     let smaXValuesFunction = [];
@@ -46,13 +46,13 @@ class Stock extends React.Component {
     Promise.all([
       fetch(API_Call_ALPHA),
       fetch(API_Call_SMA),
-      //fetch(API_CALL_NEWS),
+      fetch(API_CALL_NEWS),
     ])
-      .then(function ([alpha, sma]) {
-        return [alpha.json(), sma.json()];
+      .then(function ([alpha, sma, news]) {
+        return [alpha.json(), sma.json(), news.json()];
       })
-      .then(function ([alphaData, smaData]) {
-        console.log(alphaData, smaData);
+      .then(function ([alphaData, smaData, newsData]) {
+        console.log(alphaData, smaData, newsData);
 
         alphaData.then((result) => {
           //console.log(result);
@@ -88,6 +88,11 @@ class Stock extends React.Component {
             smaChartXValues: smaXValuesFunction,
             smaChartYValues: smaYValuesFunction,
           });
+        });
+
+        newsData.then((result) => {
+          newsArray = result.articles;
+          console.log(newsArray);
         });
 
         // console.log(stockChartXValuesFunction);
@@ -232,7 +237,29 @@ class Stock extends React.Component {
           </div>
           {/* End of SMA Graph */}
           {/* News Section Start */}
-
+          <div className="company-news">
+            <h2>{stockSymbol}' Latest Updates</h2>
+            <div>
+              <ul>
+                {newsArray.map((item) => {
+                  return (
+                    <li>
+                      <img
+                        className="article-img"
+                        src={item.urlToImage ? item.urlToImage : defaultImg}
+                        alt="news"
+                      />
+                      <p>
+                        <a className="article-link" href={item.url}>
+                          {item.title}
+                        </a>
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
           {/* End of News Section */}
         </div>
         {/* End of Below the Scroll Animation */}
