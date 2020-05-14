@@ -35,10 +35,65 @@
   color: #61dafb;
 }
 
-.plot {
-  margin-right: 0;
-  margin-left: auto;
+.plot-stock {
+  position: absolute;
+  right: 0;
+  width: 35rem;
+  height: 35rem;
+  padding: 10px;
+  border-bottom: 1px solid;
 }
+
+.plot-sma {
+  position: absolute;
+  right: 0;
+  width: 35rem;
+  height: 35rem;
+  padding: 10px;
+  margin-top: 35rem;
+  border-bottom: 1px solid;
+}
+
+.company-news {
+  position: absolute;
+  left: 0;
+  width: 35rem;
+  height: auto;
+  padding: 10px;
+  border: 1px solid;
+  border-top: none;
+  /* margin-top: 35rem; */
+}
+
+li {
+  list-style: none;
+  margin-bottom: 3.5rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.article-img {
+  height: 7rem;
+  width: 10rem;
+  position: relative;
+  left: 0;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.article-link {
+  margin-bottom: 1rem;
+  color: #282c34
+}
+
+.article-link :hover {
+  color: #21ce99;
+}
+
 
 /* Scroll Down Animation Start */
 .scroll-down {
