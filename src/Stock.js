@@ -137,7 +137,7 @@ class Stock extends React.Component {
             <input
               className="mt-5"
               name="userSymbol"
-              placeholder="GOOGL"
+              placeholder="Enter Stock Symbol or News You Want to Know About"
               onChange={(event) =>
                 this.setState({
                   stockSymbolDisplay: event.target.value.toUpperCase(),
@@ -174,14 +174,14 @@ class Stock extends React.Component {
           {/* End View Stock History Buttons */}
           {/* Start of Stock Graph */}
           <div
-            className="row plot-stock"
+            className="row plot-stock container display-div mt-4"
             style={{ marginRight: "3rem", display: "block" }}
           >
             <div className="">
               {/* w-50 mx-auto */}
               <Plot
                 className="ml-3 bg-light text-center"
-                style={{ marginTop: "5rem", marginLeft: "7rem" }}
+                style={{ marginLeft: "7rem" }}
                 data={[
                   {
                     x: this.state.stockChartXValues,
@@ -207,13 +207,13 @@ class Stock extends React.Component {
 
           {/* Start of SMA Graph */}
           <div
-            className="row plot-sma"
+            className="row plot-sma container-fluid display-div"
             style={{ marginRight: "3rem", display: "block" }}
           >
             <div className="">
               <Plot
                 className="ml-3 bg-light text-center"
-                style={{ marginTop: "5rem", marginLeft: "7rem" }}
+                style={{ marginLeft: "7rem" }}
                 data={[
                   {
                     x: this.state.smaChartXValues,
@@ -237,24 +237,32 @@ class Stock extends React.Component {
           </div>
           {/* End of SMA Graph */}
           {/* News Section Start */}
-          <div className="company-news">
-            <h2>{stockSymbol}' Latest Updates</h2>
-            <div>
+          <div className="company-news container-fluid">
+            <h2>{stockSymbol}'s Latest Updates</h2>
+            <div className="container-fluid">
               <ul>
                 {newsArray.map((item) => {
                   return (
-                    <li>
-                      <img
-                        className="article-img"
-                        src={item.urlToImage ? item.urlToImage : defaultImg}
-                        alt="news"
-                      />
-                      <p>
-                        <a className="article-link" href={item.url}>
-                          {item.title}
-                        </a>
-                      </p>
-                    </li>
+                    <div className="card mt-2">
+                      <li>
+                        <img
+                          className="card-img-top"
+                          // style={{ height: "7rem", width: "10rem" }}
+                          src={item.urlToImage ? item.urlToImage : defaultImg}
+                          alt="news"
+                        />
+                        <div className="card-body">
+                          <h5 className="card-title">{item.title}</h5>
+                          <p className="card-text">{item.description}</p>
+                          <a
+                            className="article-link btn btn-secondary mt-5"
+                            href={item.url}
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </li>
+                    </div>
                   );
                 })}
               </ul>

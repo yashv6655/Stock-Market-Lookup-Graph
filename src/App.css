@@ -26,7 +26,7 @@
 }
 
 .text-style {
-  font-family: 'Special Elite', cursive;
+  font-family: "Special Elite", cursive;
   font-size: 3.25rem;
   text-transform: lowercase;
 }
@@ -56,13 +56,27 @@
 
 .company-news {
   position: absolute;
-  left: 0;
-  width: 35rem;
-  height: auto;
+  margin-top: 1rem;
+  left: 1rem;
   padding: 10px;
   border: 1px solid;
-  border-top: none;
+  box-shadow: 0 0 10px grey;
+  background-color: white;
+  width: 35rem;
+  height: auto;
+  display: inline-block;
+  border-radius: 15px 15px 15px 15px;
+  /* border-top: none; */
   /* margin-top: 35rem; */
+}
+
+.display-div {
+  box-shadow: 0 0 10px grey;
+  background-color: white;
+  width: 35rem;
+  height: auto;
+  display: inline-block;
+  border-radius: 15px 15px 15px 15px;
 }
 
 li {
@@ -72,6 +86,10 @@ li {
 
 h2 {
   margin-bottom: 1rem;
+}
+
+input {
+  width: 24rem;
 }
 
 .article-img {
@@ -87,13 +105,12 @@ h2 {
 
 .article-link {
   margin-bottom: 1rem;
-  color: #282c34
+  color: #fff;
 }
 
 .article-link :hover {
   color: #21ce99;
 }
-
 
 /* Scroll Down Animation Start */
 .scroll-down {
@@ -120,7 +137,6 @@ h2 {
   -moz-animation: fade_move_down 4s ease-in-out infinite;
   animation: fade_move_down 4s ease-in-out infinite;
 }
-
 
 /*animated scroll arrow animation*/
 @-webkit-keyframes fade_move_down {
