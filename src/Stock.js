@@ -1,6 +1,8 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import defaultImg from "./newsThumbnail.jpg";
+import Navbar from "./components/Navbar";
+import dotenv from "dotenv";
 
 var stockSymbol = "GOOGL";
 var stockDisplaytype = "compact";
@@ -18,6 +20,9 @@ class Stock extends React.Component {
       stockChartYValues: [],
       smaChartXValues: [],
       smaChartYValues: [],
+      closePricesArray: [],
+      highPriceArray: [],
+      lowPriceArray: [],
       stockSymbolDisplay: "",
       title: "GOOGL",
     };
@@ -31,16 +36,29 @@ class Stock extends React.Component {
     const pointerToThis = this;
     //console.log(pointerToThis);
     const API_KEY = process.env.REACT_API_KEY;
-    const NEWS_API_KEY = process.env.API_KEY_NEWS;
+    const NEWS_API_KEY = process.env.REACT_NEWS_KEY;
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + "/" + dd + "/" + yyyy;
+    today = yyyy + "-" + mm + "-" + dd;
+    console.log(today);
 
     // this.state.stockSymbolDisplay = stockSymbol;
     let API_Call_ALPHA = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=${stockDisplaytype}&apikey=${API_KEY}`;
     let API_Call_SMA = `https://www.alphavantage.co/query?function=SMA&symbol=${stockSymbol}&interval=daily&time_period=2&series_type=open&apikey=${API_KEY}`;
-    let API_CALL_NEWS = `http://newsapi.org/v2/everything?q=${stockSymbol}&from=2020-05-13&to=2020-05-13&sortBy=popularity&apiKey=ff8c8269aead49568adb2058ad21ec07`;
+    //let API_CALL_NEWS = `http://newsapi.org/v2/everything?q=${stockSymbol}&from=${today}&to=${today}&sortBy=popularity&apiKey=932037be197c49ca8e3d65429af9b286`;
+    let API_CALL_NEWS = `https://gnews.io/api/v3/search?q=${stockSymbol}&max=10&token=ffff71b35644b14ad953a6a4a594aea6`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
     let smaXValuesFunction = [];
     let smaYValuesFunction = [];
+    let getCloseArray = [];
+    let getHighPriceArray = [];
+    let getLowPriceArray = [];
 
     //this.setState({ stockSymbolDisplay: stockSymbol });
     Promise.all([
@@ -61,10 +79,19 @@ class Stock extends React.Component {
             stockChartYValuesFunction.push(
               result["Time Series (Daily)"][key]["1. open"]
             );
+            getHighPriceArray.push(
+              result["Time Series (Daily)"][key]["2. high"]
+            );
+            getLowPriceArray.push(result["Time Series (Daily)"][key]["3. low"]);
+            getCloseArray.push(result["Time Series (Daily)"][key]["4. close"]);
           }
+
           pointerToThis.setState({
             stockChartXValues: stockChartXValuesFunction,
             stockChartYValues: stockChartYValuesFunction,
+            closePricesArray: getCloseArray,
+            highPriceArray: getHighPriceArray,
+            lowPriceArray: getLowPriceArray,
           });
         });
 
@@ -122,17 +149,19 @@ class Stock extends React.Component {
 
   render() {
     return (
-      <div className="bg-light">
+      <div className="bg-light" style={{ marginTop: "5rem" }}>
         {/* Scroll Animation */}
-        <div className="App-header text-center">
+        {/* <div className="App-header text-center">
+          <Navbar />
           <h1 className="mb-5 shadow text-style">Stock Market Lookup</h1>
           <div className="scroll-down" style={{ textAlign: "center" }}></div>
-        </div>
+        </div> */}
         {/*End Scroll Animation */}
 
         {/* Below the Scroll Animation */}
-        <div className="bg-light">
+        <div className="bg-light mt-5">
           {/* Stock Search Start */}
+          <Navbar />
           <div className="mt-5 bg-light">
             <input
               className="mt-5"
@@ -175,7 +204,7 @@ class Stock extends React.Component {
           {/* Start of Stock Graph */}
           <div
             className="row plot-stock container display-div mt-4"
-            style={{ marginRight: "3rem", display: "block" }}
+            style={{ display: "block" }}
           >
             <div className="">
               {/* w-50 mx-auto */}
@@ -208,7 +237,7 @@ class Stock extends React.Component {
           {/* Start of SMA Graph */}
           <div
             className="row plot-sma container-fluid display-div"
-            style={{ marginRight: "3rem", display: "block" }}
+            style={{ marginRight: "25rem", display: "block" }}
           >
             <div className="">
               <Plot
@@ -236,6 +265,36 @@ class Stock extends React.Component {
             </div>
           </div>
           {/* End of SMA Graph */}
+
+          {/* table */}
+          <div className="row container-fluid table-align display-div">
+            <table className="table table-striped table-bordered ">
+              <tbody>
+                <tr>
+                  <th scope="row">Date</th>
+                  <td>{this.state.stockChartXValues[0]}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Previous Close</th>
+                  <td>${this.state.closePricesArray[0]}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Open</th>
+                  <td>${this.state.stockChartYValues[0]}</td>
+                </tr>
+                <tr>
+                  <th scope="row">High</th>
+                  <td>${this.state.highPriceArray[0]}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Low</th>
+                  <td>${this.state.lowPriceArray[0]}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {/* end of table */}
+
           {/* News Section Start */}
           <div className="company-news container-fluid">
             <h2>{stockSymbol}'s Latest Updates</h2>
@@ -243,12 +302,15 @@ class Stock extends React.Component {
               <ul>
                 {newsArray.map((item) => {
                   return (
-                    <div className="card mt-2">
+                    <div
+                      className="card mt-2"
+                      style={{ marginRight: "2.5rem" }}
+                    >
                       <li>
                         <img
-                          className="card-img-top"
+                          className="card-img-top article-img"
                           // style={{ height: "7rem", width: "10rem" }}
-                          src={item.urlToImage ? item.urlToImage : defaultImg}
+                          src={item.image ? item.image : defaultImg}
                           alt="news"
                         />
                         <div className="card-body">

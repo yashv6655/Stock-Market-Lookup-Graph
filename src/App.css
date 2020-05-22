@@ -42,6 +42,7 @@
   height: 35rem;
   padding: 10px;
   border-bottom: 1px solid;
+  margin-right: 0rem;
 }
 
 .plot-sma {
@@ -54,20 +55,37 @@
   border-bottom: 1px solid;
 }
 
+.table-align {
+  position: absolute;
+  left: 0;
+  width: 35rem;
+  height: 35rem;
+  padding: 10px;
+  margin-top: 5rem;
+  margin-left: 0;
+}
+
 .company-news {
   position: absolute;
-  margin-top: 1rem;
+  margin-top: 70rem;
   left: 1rem;
+  right: 1rem;
   padding: 10px;
   border: 1px solid;
   box-shadow: 0 0 10px grey;
   background-color: white;
-  width: 35rem;
+  width: auto;
   height: auto;
   display: inline-block;
   border-radius: 15px 15px 15px 15px;
   /* border-top: none; */
   /* margin-top: 35rem; */
+}
+
+.title-nav {
+  font-family: "Special Elite", cursive;
+  font-size: 2rem;
+  text-transform: capitalize;
 }
 
 .display-div {
@@ -93,12 +111,12 @@ input {
 }
 
 .article-img {
-  height: 7rem;
-  width: 10rem;
+  height: 10rem;
+  width: 12rem;
   position: relative;
   left: 0;
   margin-bottom: 0.75rem;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 4px;
   padding: 5px;
 }
@@ -111,6 +129,87 @@ input {
 .article-link :hover {
   color: #21ce99;
 }
+
+.navbar-component {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: black;
+  border-radius: 5px 0;
+}
+
+/* Learn Page Styling */
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  text-transform: capitalize;
+  letter-spacing: 0.3rem;
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.learn-section {
+  width: 85vw;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.learn-section p {
+  line-height: 2rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.learn-section-btn {
+  margin: auto 16rem;
+}
+
+.learn-section-btn {
+  /* border-radius: 4px; */
+  /* background-color: #5ca1e1; */
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 32px;
+  /* padding: 16px; */
+  /* width: 220px; */
+  transition: all 0.5s;
+  cursor: pointer;
+  /* margin: 36px; */
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+.learn-section-btn {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.learn-section-btn:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  /* top: 14px; */
+  /* right: -20px; */
+  transition: 0.5s;
+}
+
+.learn-section-btn:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+}
+
+.learn-section-btn:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
+/* End of Learn Page Styling */
 
 /* Scroll Down Animation Start */
 .scroll-down {
