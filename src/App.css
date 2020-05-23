@@ -57,7 +57,6 @@
   border-bottom: 1px solid;
 }
 
-
 .table-align {
   position: absolute;
   left: 0;
@@ -88,15 +87,18 @@
 @media screen and (max-width: 1000px) {
   .plot-stock {
     margin-top: 25rem;
+    margin-right: 0;
   }
 
   .plot-sma {
     margin-top: 55rem;
-    margin-right: 3rem;
+    margin-left: 2rem;
+    margin-right: 0;
   }
 
   .company-news {
     margin-top: 90rem;
+    margin-right: 0;
   }
 }
 
@@ -228,8 +230,6 @@ input {
 }
 
 /* End of Learn Page Styling */
-
-
 
 /* Scroll Down Animation Start */
 .scroll-down {
