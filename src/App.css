@@ -83,31 +83,6 @@
   /* border-top: none; */
   /* margin-top: 35rem; */
 }
-
-@media screen and (max-width: 1000px) {
-  .plot-stock {
-    margin-top: 25rem;
-    margin-right: 0;
-  }
-
-  .plot-sma {
-    margin-top: 55rem;
-    margin-left: 2rem;
-    margin-right: 0;
-  }
-
-  .company-news {
-    margin-top: 90rem;
-    margin-right: 0;
-  }
-}
-
-.title-nav {
-  font-family: "Special Elite", cursive;
-  font-size: 2rem;
-  text-transform: capitalize;
-}
-
 .display-div {
   box-shadow: 0 0 10px grey;
   background-color: white;
@@ -115,6 +90,29 @@
   height: auto;
   display: inline-block;
   border-radius: 15px 15px 15px 15px;
+}
+
+@media screen and (max-width: 1250px) {
+  .plot-stock {
+    margin-top: 25rem;
+    left: 1rem;
+  }
+
+  .plot-sma {
+    margin-top: 55rem;
+    left: 0;
+  }
+
+  .company-news {
+    margin-top: 90rem;
+    margin-left: 0;
+  }
+}
+
+.title-nav {
+  font-family: "Special Elite", cursive;
+  font-size: 2rem;
+  text-transform: capitalize;
 }
 
 li {

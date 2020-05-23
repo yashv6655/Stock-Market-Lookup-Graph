@@ -266,7 +266,7 @@ class Stock extends React.Component {
           {/* Start of SMA Graph */}
           <div
             className="row plot-sma container display-div"
-            style={{ marginLeft: "35rem", display: "block" }}
+            style={{ display: "block" }}
           >
             <div className="container">
               <Plot
