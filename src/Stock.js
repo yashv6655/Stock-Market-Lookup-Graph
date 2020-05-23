@@ -203,14 +203,14 @@ class Stock extends React.Component {
           {/* End View Stock History Buttons */}
           {/* Start of Stock Graph */}
           <div
-            className="row plot-stock container display-div mt-4"
+            className="row plot-stock container display-div"
             style={{ display: "block" }}
           >
             <div className="">
               {/* w-50 mx-auto */}
               <Plot
                 className="ml-3 bg-light text-center"
-                style={{ marginLeft: "7rem" }}
+                style={{ marginLeft: "0" }}
                 data={[
                   {
                     x: this.state.stockChartXValues,
@@ -233,38 +233,6 @@ class Stock extends React.Component {
             </div>
           </div>
           {/* End of Stock Graph */}
-
-          {/* Start of SMA Graph */}
-          <div
-            className="row plot-sma container-fluid display-div"
-            style={{ marginRight: "25rem", display: "block" }}
-          >
-            <div className="">
-              <Plot
-                className="ml-3 bg-light text-center"
-                style={{ marginLeft: "7rem" }}
-                data={[
-                  {
-                    x: this.state.smaChartXValues,
-                    y: this.state.smaChartYValues,
-                    type: "scatter",
-                    mode: "lines+markers",
-                    marker: { color: "black" },
-                    name: "SMA Line History",
-                  },
-                ]}
-                layout={{
-                  width: 500,
-                  height: 450,
-                  title: `${this.state.title}'s Full SMA History`,
-                  titlefont: { size: 25 },
-                  paper_bgcolor: "#f8f9fa",
-                  plot_bgcolor: "#f8f9fa",
-                }}
-              />
-            </div>
-          </div>
-          {/* End of SMA Graph */}
 
           {/* table */}
           <div className="row container-fluid table-align display-div">
@@ -294,6 +262,38 @@ class Stock extends React.Component {
             </table>
           </div>
           {/* end of table */}
+
+          {/* Start of SMA Graph */}
+          <div
+            className="row plot-sma container display-div"
+            style={{ marginLeft: "35rem", display: "block" }}
+          >
+            <div className="container">
+              <Plot
+                className="ml-3 bg-light text-center"
+                style={{ marginLeft: "7rem" }}
+                data={[
+                  {
+                    x: this.state.smaChartXValues,
+                    y: this.state.smaChartYValues,
+                    type: "scatter",
+                    mode: "lines+markers",
+                    marker: { color: "black" },
+                    name: "SMA Line History",
+                  },
+                ]}
+                layout={{
+                  width: 500,
+                  height: 450,
+                  title: `${this.state.title}'s Full SMA History`,
+                  titlefont: { size: 25 },
+                  paper_bgcolor: "#f8f9fa",
+                  plot_bgcolor: "#f8f9fa",
+                }}
+              />
+            </div>
+          </div>
+          {/* End of SMA Graph */}
 
           {/* News Section Start */}
           <div className="company-news container-fluid">

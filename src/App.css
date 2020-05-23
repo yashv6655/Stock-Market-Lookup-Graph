@@ -42,7 +42,8 @@
   height: 35rem;
   padding: 10px;
   border-bottom: 1px solid;
-  margin-right: 0rem;
+  margin-right: 3rem;
+  margin-top: 4rem;
 }
 
 .plot-sma {
@@ -52,8 +53,10 @@
   height: 35rem;
   padding: 10px;
   margin-top: 35rem;
+  margin-right: 25rem;
   border-bottom: 1px solid;
 }
+
 
 .table-align {
   position: absolute;
@@ -80,6 +83,21 @@
   border-radius: 15px 15px 15px 15px;
   /* border-top: none; */
   /* margin-top: 35rem; */
+}
+
+@media screen and (max-width: 1000px) {
+  .plot-stock {
+    margin-top: 25rem;
+  }
+
+  .plot-sma {
+    margin-top: 55rem;
+    margin-right: 3rem;
+  }
+
+  .company-news {
+    margin-top: 90rem;
+  }
 }
 
 .title-nav {
@@ -211,6 +229,8 @@ input {
 
 /* End of Learn Page Styling */
 
+
+
 /* Scroll Down Animation Start */
 .scroll-down {
   position: absolute;
@@ -287,9 +307,3 @@ input {
 }
 
 /* Scroll Down Animation End */
-
-@media screen and (min-width: 1500px) {
-  .plot {
-    margin-left: 20rem;
-  }
-}

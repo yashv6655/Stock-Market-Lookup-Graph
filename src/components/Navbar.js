@@ -34,6 +34,13 @@ export default function Navbar() {
           >
             Learn More
           </Link>
+          <Link
+            className="nav-link mx-2"
+            to="/login"
+            style={{ fontSize: "1.35rem" }}
+          >
+            Login
+          </Link>
         </div>
       </div>
     </nav>
