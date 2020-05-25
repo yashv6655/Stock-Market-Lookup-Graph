@@ -45,7 +45,6 @@ class Stock extends React.Component {
 
     today = mm + "/" + dd + "/" + yyyy;
     today = yyyy + "-" + mm + "-" + dd;
-    console.log(today);
 
     // this.state.stockSymbolDisplay = stockSymbol;
     let API_Call_ALPHA = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockSymbol}&outputsize=${stockDisplaytype}&apikey=${API_KEY}`;
@@ -128,7 +127,7 @@ class Stock extends React.Component {
 
   handleClick = () => {
     stockSymbol = this.state.stockSymbolDisplay.toUpperCase();
-    console.log(this.state.stockSymbolDisplay.toUpperCase());
+
     this.setState({
       title: stockSymbol,
     });
