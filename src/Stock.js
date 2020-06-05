@@ -148,20 +148,11 @@ class Stock extends React.Component {
 
   render() {
     return (
-      <div className="bg-light" style={{ marginTop: "5rem" }}>
-        {/* Scroll Animation */}
-        {/* <div className="App-header text-center">
-          <Navbar />
-          <h1 className="mb-5 shadow text-style">Stock Market Lookup</h1>
-          <div className="scroll-down" style={{ textAlign: "center" }}></div>
-        </div> */}
-        {/*End Scroll Animation */}
-
-        {/* Below the Scroll Animation */}
-        <div className="bg-light mt-5">
+      <div className="bg-light">
+        <Navbar />
+        <div className=" mt-5">
           {/* Stock Search Start */}
-          <Navbar />
-          <div className="mt-5 bg-light">
+          <div className="mt-5 text-center">
             <input
               className="mt-5"
               name="userSymbol"
@@ -185,7 +176,7 @@ class Stock extends React.Component {
           {/* Stock Search End */}
 
           {/* View Stock History Buttons */}
-          <div className="mt-3">
+          <div className="mt-3 text-center">
             <button
               className="btn btn-light mr-2"
               onClick={this.handleFullDisplay}
@@ -200,102 +191,99 @@ class Stock extends React.Component {
             </button>
           </div>
           {/* End View Stock History Buttons */}
-          {/* Start of Stock Graph */}
-          <div
-            className="row plot-stock container display-div"
-            style={{ display: "block" }}
-          >
-            <div className="">
-              {/* w-50 mx-auto */}
-              <Plot
-                className="ml-3 bg-light text-center"
-                style={{ marginLeft: "0" }}
-                data={[
-                  {
-                    x: this.state.stockChartXValues,
-                    y: this.state.stockChartYValues,
-                    type: "scatter",
-                    mode: "lines+markers",
-                    marker: { color: "#21ce99" },
-                    name: stockSymbol,
-                  },
-                ]}
-                layout={{
-                  width: 500,
-                  height: 450,
-                  title: `${this.state.title}'s Stock`,
-                  titlefont: { size: 25 },
-                  paper_bgcolor: "#f8f9fa",
-                  plot_bgcolor: "#f8f9fa",
-                }}
-              />
+          <div className="container">
+            <div className="row">
+              {/* table */}
+              <div className="col-sm">
+                <table className="table table-striped table-bordered ">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Date</th>
+                      <td>{this.state.stockChartXValues[0]}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Previous Close</th>
+                      <td>${this.state.closePricesArray[0]}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Open</th>
+                      <td>${this.state.stockChartYValues[0]}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">High</th>
+                      <td>${this.state.highPriceArray[0]}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Low</th>
+                      <td>${this.state.lowPriceArray[0]}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              {/* end of table */}
+
+              {/* Start of Stock Graph */}
+              <div className="col-sm">
+                <div className="">
+                  {/* w-50 mx-auto */}
+                  <Plot
+                    className="ml-3 bg-light text-center"
+                    style={{ marginLeft: "0" }}
+                    data={[
+                      {
+                        x: this.state.stockChartXValues,
+                        y: this.state.stockChartYValues,
+                        type: "scatter",
+                        mode: "lines+markers",
+                        marker: { color: "#21ce99" },
+                        name: stockSymbol,
+                      },
+                    ]}
+                    layout={{
+                      width: 450,
+                      height: 400,
+                      title: `${this.state.title}'s Stock`,
+                      titlefont: { size: 25 },
+                      paper_bgcolor: "#f8f9fa",
+                      plot_bgcolor: "#f8f9fa",
+                    }}
+                  />
+                </div>
+              </div>
+              {/* End of Stock Graph */}
+
+              {/* Start of SMA Graph */}
+              <div className="col-sm">
+                <div>
+                  <Plot
+                    className=""
+                    data={[
+                      {
+                        x: this.state.smaChartXValues,
+                        y: this.state.smaChartYValues,
+                        type: "scatter",
+                        mode: "lines+markers",
+                        marker: { color: "black" },
+                        name: "SMA Line History",
+                      },
+                    ]}
+                    layout={{
+                      width: 450,
+                      height: 400,
+                      title: `${this.state.title}'s Full SMA History`,
+                      titlefont: { size: 25 },
+                      paper_bgcolor: "#f8f9fa",
+                      plot_bgcolor: "#f8f9fa",
+                    }}
+                  />
+                </div>
+              </div>
+              {/* End of SMA Graph */}
             </div>
           </div>
-          {/* End of Stock Graph */}
-
-          {/* table */}
-          <div className="row container-fluid table-align display-div">
-            <table className="table table-striped table-bordered ">
-              <tbody>
-                <tr>
-                  <th scope="row">Date</th>
-                  <td>{this.state.stockChartXValues[0]}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Previous Close</th>
-                  <td>${this.state.closePricesArray[0]}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Open</th>
-                  <td>${this.state.stockChartYValues[0]}</td>
-                </tr>
-                <tr>
-                  <th scope="row">High</th>
-                  <td>${this.state.highPriceArray[0]}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Low</th>
-                  <td>${this.state.lowPriceArray[0]}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          {/* end of table */}
-
-          {/* Start of SMA Graph */}
-          <div
-            className="row plot-sma container display-div"
-            style={{ display: "block" }}
-          >
-            <div className="container">
-              <Plot
-                className="ml-3 bg-light text-center"
-                style={{ marginLeft: "7rem" }}
-                data={[
-                  {
-                    x: this.state.smaChartXValues,
-                    y: this.state.smaChartYValues,
-                    type: "scatter",
-                    mode: "lines+markers",
-                    marker: { color: "black" },
-                    name: "SMA Line History",
-                  },
-                ]}
-                layout={{
-                  width: 500,
-                  height: 450,
-                  title: `${this.state.title}'s Full SMA History`,
-                  titlefont: { size: 25 },
-                  paper_bgcolor: "#f8f9fa",
-                  plot_bgcolor: "#f8f9fa",
-                }}
-              />
-            </div>
-          </div>
-          {/* End of SMA Graph */}
 
           {/* News Section Start */}
-          <div className="company-news container-fluid">
+          <div className="container-fluid">
             <h2>{stockSymbol}'s Latest Updates</h2>
             <div className="container-fluid">
               <ul>

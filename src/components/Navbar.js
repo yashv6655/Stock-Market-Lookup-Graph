@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-warning navbar-component mb-5">
+    <nav className="navbar navbar-expand-lg navbar-light bg-warning mb-5">
       <Link className="navbar-brand title-nav mr-5" to="/">
         Stock Market Lookup
       </Link>
