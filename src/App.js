@@ -5,6 +5,8 @@ import LearnMorePage from "./Pages/LearnMorePage";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import "./App.css";
+import BudgetCalculator from "./components/ExpenseCalculator/BudgetCalculator";
+import CalculatorDisplay from "./components/ExpenseCalculator/CalculatorDisplay";
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <Signup />
+        </Route>
+        <Route path="/calculator">
+          <CalculatorDisplay />
         </Route>
       </Switch>
     </Router>

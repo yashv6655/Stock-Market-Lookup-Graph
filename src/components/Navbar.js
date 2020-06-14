@@ -41,6 +41,13 @@ export default function Navbar() {
           >
             Login
           </Link>
+          <Link
+            className="nav-link mx-2"
+            to="/calculator"
+            style={{ fontSize: "1.35rem" }}
+          >
+            Budget Calculator
+          </Link>
         </div>
       </div>
     </nav>
