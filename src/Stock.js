@@ -253,7 +253,7 @@ class Stock extends React.Component {
               {/* End of Stock Graph */}
 
               {/* Start of SMA Graph */}
-              <div className="col-sm">
+              <div className="col-sm d-flex justify-content-center">
                 <div>
                   <Plot
                     className=""
