@@ -149,7 +149,7 @@ class Stock extends React.Component {
   render() {
     return (
       <div className="bg-light">
-        <Navbar />
+        {/* <Navbar /> */}
         <div className=" mt-5">
           {/* Stock Search Start */}
           <div className="mt-5 text-center">

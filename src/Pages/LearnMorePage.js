@@ -7,7 +7,6 @@ import Navbar from "../components/Navbar";
 export default function LearnMorePage() {
   return (
     <section className="section learn-section">
-      <Navbar />
       <div className="mt-5">
         <h1 className="section-title">Learn About Stocks</h1>
         <div className="col-sm">
